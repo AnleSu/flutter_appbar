@@ -10,7 +10,7 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   final TextStyle titleStyle;
   final Color backgroundColor;
   final String backImgName;
-
+  final bool isBack;
   MyAppBar({
     this.bottom,
     this.title,
@@ -19,6 +19,7 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.titleStyle,
     this.backgroundColor,
     this.backImgName,
+    this.isBack: true,
   });
   @override
   _MyAppBarState createState() => _MyAppBarState();
@@ -41,7 +42,8 @@ class _MyAppBarState extends State<MyAppBar> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      leading: FlatButton(
+       
+      leading: widget.isBack ? FlatButton(
         child: Image(
           image: new AssetImage(widget.backImgName ?? 'resources/base_navi_back.png'),
           width: 9,
@@ -50,7 +52,7 @@ class _MyAppBarState extends State<MyAppBar> {
         onPressed: () {
           Navigator.maybePop(context);
         },
-      ),
+      ) : null,
       backgroundColor: widget.backgroundColor ?? Colors.white,
       elevation: 0,
    
